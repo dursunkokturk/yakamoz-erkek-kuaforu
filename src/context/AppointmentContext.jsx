@@ -7,6 +7,7 @@ const AppointmentContext = createContext(null);
 export const APPOINTMENT_STATUS = {
   PENDING: "pending", // Bekliyor
   APPROVED: "approved", // Onaylandı
+  COMPLETED: "completed", // Tamamlandı
   CANCELLED: "cancelled", // İptal
 };
 
@@ -50,6 +51,12 @@ export function AppointmentProvider({ children }) {
     );
   }
 
+  function completeAppointment(id) {
+    setAppointments((prev) =>
+      prev.map((a) => (a.id === id ? { ...a, status: APPOINTMENT_STATUS.COMPLETED } : a))
+    );
+  }
+
   function cancelAppointment(id) {
     setAppointments((prev) =>
       prev.map((a) => (a.id === id ? { ...a, status: APPOINTMENT_STATUS.CANCELLED } : a))
@@ -81,6 +88,7 @@ export function AppointmentProvider({ children }) {
         appointments,
         createAppointment,
         approveAppointment,
+        completeAppointment,
         cancelAppointment,
         deleteAppointment,
         rescheduleAppointment,

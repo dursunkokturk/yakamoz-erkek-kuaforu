@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
-import { useAppointments } from "../../context/AppointmentContext";
+import { useAppointments, APPOINTMENT_STATUS } from "../../context/AppointmentContext";
 import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -60,6 +60,12 @@ export function MyAppointments() {
                   {formatDateTR(a.date)} · {a.time}
                 </p>
                 <p className="appointment-result-card__price">{a.price} ₺</p>
+                {/* Sadece Onay Bekleyen Randevularda Gosterilir */}
+                {a.status === APPOINTMENT_STATUS.PENDING && (
+                  <p className="appointment-result-card__notice">
+                    Randevunuzun onaylanma durumunu kontrol ediniz.
+                  </p>
+                )}
               </Card>
             ))
           )}

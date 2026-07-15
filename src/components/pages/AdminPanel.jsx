@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
-import { LogOut, ChevronLeft, ChevronRight, Check, Ban, Trash2, CalendarClock } from "lucide-react";
+import { LogOut, ChevronLeft, ChevronRight, Check, CheckCheck, Ban, Trash2, CalendarClock } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useAppointments, APPOINTMENT_STATUS } from "../../context/AppointmentContext";
 import { useBlockedCustomers } from "../../context/BlockedCustomerContext";
@@ -57,7 +57,7 @@ export function AdminPanel() {
 }
 
 function AppointmentsTab() {
-  const { getAppointmentsByDate, approveAppointment, cancelAppointment, deleteAppointment, rescheduleAppointment } =
+  const { getAppointmentsByDate, approveAppointment, completeAppointment, cancelAppointment, deleteAppointment, rescheduleAppointment } =
     useAppointments();
   const { blockCustomer } = useBlockedCustomers();
   const [activeDate, setActiveDate] = useState(todayISO());
@@ -91,6 +91,12 @@ function AppointmentsTab() {
   function handleApprove() {
     approveAppointment(selectedAppointment.id);
     toast.success("Randevu onaylandı");
+    closeDetail();
+  }
+
+  function handleComplete() {
+    completeAppointment(selectedAppointment.id);
+    toast.success("Randevu tamamlandı olarak işaretlendi");
     closeDetail();
   }
 
@@ -220,6 +226,12 @@ function AppointmentsTab() {
               {selectedAppointment.status === APPOINTMENT_STATUS.PENDING && (
                 <Button onClick={handleApprove}>
                   <Check size={16} /> Onayla
+                </Button>
+              )}
+              {/* Sadece Onaylanmis Randevular Tamamlandi Olarak Isaretlenebilir */}
+              {selectedAppointment.status === APPOINTMENT_STATUS.APPROVED && (
+                <Button onClick={handleComplete}>
+                  <CheckCheck size={16} /> Tamamlandı Olarak İşaretle
                 </Button>
               )}
               <Button variant="ghost" onClick={() => setRescheduleMode(true)}>

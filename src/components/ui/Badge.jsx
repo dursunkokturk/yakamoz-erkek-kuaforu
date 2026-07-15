@@ -1,7 +1,8 @@
 const STATUS_LABELS = {
-  pending: "Bekliyor",
+  pending: "Onay Bekliyor",
   approved: "Onaylandı",
-  cancelled: "İptal",
+  completed: "Tamamlandı",
+  cancelled: "İptal Edildi",
 };
 
 export function Badge({ status, children }) {
