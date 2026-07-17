@@ -28,4 +28,5 @@ export const STORAGE_KEYS = {
   SETTINGS: "yakamoz_settings",
   CLOSED_DAYS: "yakamoz_closed_days",
   THEME: "yakamoz_theme",
+  ADMIN_FILTERS: "yakamoz_admin_filters",
 };

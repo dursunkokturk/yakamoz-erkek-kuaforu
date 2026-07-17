@@ -12,6 +12,7 @@ import { ServiceManagerList } from "../services/ServiceManagerList";
 import { ClosedDaysManager } from "../admin/ClosedDaysManager";
 import { PasswordSettings } from "../admin/PasswordSettings";
 import { dayjs, formatDateShort, formatDateTR, todayISO } from "../../utils/dateUtils";
+import { AppointmentFilters } from "../admin/AppointmentFilters";
 
 const TABS = [
   { id: "appointments", label: "Randevular" },
@@ -68,8 +69,22 @@ function AppointmentsTab() {
   const [rescheduleMode, setRescheduleMode] = useState(false);
   const [rescheduleDate, setRescheduleDate] = useState("");
   const [rescheduleTime, setRescheduleTime] = useState("");
+  const [filters, setFilters] = useState({ status: "all", serviceId: "all", customerName: "" });
 
   const dayAppointments = useMemo(() => getAppointmentsByDate(activeDate), [getAppointmentsByDate, activeDate]);
+
+  const filteredAppointments = useMemo(() => {
+    return dayAppointments.filter((a) => {
+      if (filters.status !== "all" && a.status !== filters.status) return false;
+      if (filters.serviceId !== "all" && a.serviceId !== filters.serviceId) return false;
+      if (filters.customerName.trim()) {
+        const query = filters.customerName.trim().toLocaleLowerCase("tr-TR");
+        if (!a.fullName.toLocaleLowerCase("tr-TR").includes(query)) return false;
+      }
+      return true;
+    });
+  }, [dayAppointments, filters]);
+
   const { slots: rescheduleSlots } = useAvailability(rescheduleDate);
 
   function goToPrevDay() {
@@ -152,8 +167,12 @@ function AppointmentsTab() {
         </button>
       </div>
 
-      {dayAppointments.length === 0 ? (
-        <p className="admin-appointments__empty">Bu gün için randevu bulunmuyor.</p>
+      <AppointmentFilters onChange={setFilters} />
+
+      {filteredAppointments.length === 0 ? (
+        <p className="admin-appointments__empty">
+          {dayAppointments.length === 0 ? "Bu gün için randevu bulunmuyor." : "Filtrelere Uyan Randevu Bulunamadı"}
+        </p>
       ) : (
         <table className="admin-table">
           <thead>
