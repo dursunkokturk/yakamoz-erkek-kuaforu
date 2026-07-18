@@ -61,7 +61,7 @@ Ana Sayfa ──┬── Hizmetler ──► Randevu Al ──► Onay Ekranı 
 ### 🧰 Teknoloji Yığını
 
 | Katman           | Kullanılan Kütüphane                                                |
-| -----------------|---------------------------------------------------------------------|
+|:----------------:|:-------------------------------------------------------------------:|
 | UI Framework     | React (fonksiyonel bileşenler + Hooks)                              |
 | Yönlendirme      | react-router-dom (BrowserRouter, ProtectedRoute)                    |
 | Form Yönetimi    | react-hook-form (useForm, Controller)                               |
