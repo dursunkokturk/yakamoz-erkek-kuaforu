@@ -1,80 +1,178 @@
-# Yakamoz Erkek Kuaförü — Randevu Sistemi
+💈 Yakamoz Erkek Kuaförü — Online Randevu Sistemi
 
-React ile geliştirilmiş, mobil öncelikli bir berber randevu sistemi. Müşteriler online randevu
-alır, berber (admin) randevuları onaylar/yönetir. Backend yoktur; tüm veri tarayıcının
-`localStorage`'ında tutulur.
+Yakamoz Erkek Kuaförü için geliştirilmiş, backend gerektirmeyen, tamamen istemci tarafında (client-side) çalışan bir randevu yönetim uygulamasıdır. Müşteriler online randevu alabilir, randevularını telefon numaralarıyla sorgulayabilir; işletme sahibi ise admin panelinden randevuları onaylayıp yönetebilir.
 
-## Özellikler
 
-- **Randevu alma akışı**: Ad-soyad, telefon (`0555 555 55 55` formatı), tarih, işlem seçimi;
-  seçilen işleme göre süre ve ücret otomatik gösterilir.
-- **Kapasite kontrolü**: Aynı saatte en fazla 2 randevu alınabilir; dolan saatler otomatik pasif
-  hale gelir.
-- **Çalışma saatleri**: Salı hariç her gün 09:00–19:00, 30 dakikalık dilimler.
-- **Admin onayı**: Her randevu "Bekliyor" durumunda oluşur, berber onayladıktan sonra
-  "Onaylandı" olur.
-- **Engellenen müşteriler**: Admin sorunlu müşteriyi engelleyebilir; engellenen isimle yeni
-  randevu oluşturulamaz. Engellenenler listesi admin panelinde her zaman görüntülenebilir.
-- **Admin paneli**: Günlük randevu tablosu, randevu detayına tıklayınca (mobilde bildirim
-  ekranı gibi açılan modal) tüm bilgiler, onaylama/iptal/silme/tarih değiştirme işlemleri.
-- **Hizmet yönetimi**: Admin hizmet (saç kesimi, sakal tıraşı vb.), süre ve ücret
-  ekleyip düzenleyebilir.
-- **Randevularım**: Müşteri, telefon numarasıyla kendi randevu geçmişini sorgulayabilir.
-- **Bildirimler**: React Toastify ile randevu oluşturuldu / saat dolu / telefon hatalı / admin
-  onayı bekleniyor gibi anlık bildirimler.
+🎯 Portfolyo / demo projesi — Veriler bir sunucuya değil, tarayıcının localStorage'ına kaydedilir.
 
-## Teknoloji
 
-React 19 · Vite · React Router v7 · React Hook Form · Day.js (tr locale) · React Toastify ·
-Lucide React · Context API · LocalStorage
 
-## Kurulum
 
-```bash
-npm install
-npm run dev
-```
+📑 İçindekiler
 
-Uygulama varsayılan olarak `http://localhost:5173` adresinde açılır.
 
-Prodüksiyon derlemesi için:
+Özellikler
+Ekran Akışı
+Teknoloji Yığını
+Proje Yapısı
+Kurulum
+Admin Girişi
+Veri Katmanı ve Kalıcılık
+Randevu İş Kuralları
+Tema Sistemi
+Bilinen Sınırlamalar
+Yol Haritası
 
-```bash
-npm run build
-npm run preview
-```
 
-## Admin girişi (demo)
 
-Backend olmadığı için admin kimlik doğrulaması istemci tarafında simüle edilmiştir
-(sahte/`none`-imzalı bir JWT üretilip `localStorage`'a yazılır). Gerçek bir üründe bu mutlaka
-bir backend servisi tarafından yapılmalıdır.
+✨ Özellikler
 
-- Kullanıcı adı: `admin`
-- Şifre: `yakamoz2026`
+Müşteri Tarafı
 
-Giriş bilgileri `src/context/AuthContext.jsx` içinde değiştirilebilir.
 
-## Klasör yapısı
+🏠 Ana Sayfa — İşletme tanıtımı, öne çıkan hizmetler, hızlı randevu çağrısı
+✂️ Hizmetler — Aktif hizmetlerin listesi (isim, süre, ücret), hizmete tıklayarak doğrudan randevu formuna geçiş
+📅 Randevu Al — Ad-soyad, telefon, hizmet seçimi, takvimden tarih seçimi ve o günün uygun saatlerini gösteren dinamik saat seçimi
+🔍 Randevularım — Telefon numarasıyla geçmiş/gelecek randevu sorgulama
+🌗 Açık/Koyu Tema — Sistem tercihine duyarlı, manuel değiştirilebilir tema anahtarı
 
-```
+
+Admin (Berber Paneli) Tarafı
+
+
+🔐 Kullanıcı adı/şifre ile korumalı giriş (ProtectedRoute)
+📋 Randevu Yönetimi — Güne göre randevu listeleme, durum/hizmet/isim filtreleme, randevu detayında onayla / iptal et / sil / tarih değiştir / müşteriyi engelle işlemleri
+🚫 Engellenen Müşteriler — Kötüye kullanan müşterileri isim+telefon eşleşmesiyle engelleme/engel kaldırma
+🛠️ Hizmet Yönetimi — Hizmet ekleme, düzenleme, silme, aktif/pasif yapma
+📆 Kapalı Günler — Resmî tatil, bakım vb. sebeplerle özel gün kapatma
+⚙️ Ayarlar — Haftalık kapalı gün seçimi, admin şifre değiştirme
+
+
+
+🧭 Ekran Akışı
+
+Ana Sayfa ──┬── Hizmetler ──► Randevu Al ──► Onay Ekranı
+            ├── Randevu Al (doğrudan)
+            ├── Randevularım (telefonla sorgu)
+            └── Admin Girişi ──► Berber Paneli
+                                   ├── Randevular (filtrele / onayla / iptal / sil / ertele / engelle)
+                                   ├── Engellenen Müşteriler
+                                   ├── Hizmetler (CRUD)
+                                   ├── Kapalı Günler
+                                   └── Ayarlar (çalışma günleri, şifre)
+
+
+🧰 Teknoloji Yığını
+
+KatmanKullanılan KütüphaneUI FrameworkReact (fonksiyonel bileşenler + Hooks)Yönlendirmereact-router-dom (BrowserRouter, ProtectedRoute)Form Yönetimireact-hook-form (useForm, Controller)Bildirimlerreact-toastifyTarih İşlemleridayjs (weekday, customParseFormat, isSameOrAfter/Before, tr locale)İkonlarlucide-reactVeri KalıcılığıTarayıcı localStorage (özel storage.js sarmalayıcı)Kimlik Doğrulamaİstemci tarafında üretilen sahte JWT (demo amaçlı, alg: none)StilVanilla CSS, CSS custom properties (design tokens) ile tema yönetimi
+
+
+⚠️ Not: Kimlik doğrulama, kod içindeki yorumda da belirtildiği gibi gerçek bir backend'i temsil etmez. Üretim ortamında bu mantığın bir sunucu tarafından yürütülmesi gerekir.
+
+
+
+
+📁 Proje Yapısı
+
 src/
-  components/
-    layout/     Header, Footer, ProtectedRoute
-    ui/         Button, Input, Select, Modal, Card, Spinner, Badge, Calendar
-    visuals/    Logo, BarberStripe (görsel/dekoratif bileşenler)
-    services/   ServiceCard, ServiceForm, ServiceManagerList (işlem bileşenleri)
-    pages/      Home, Services, BookAppointment, MyAppointments, AdminPanel, Login, NotFound
-  context/      AppointmentContext, ServiceContext, BlockedCustomerContext, AuthContext, SettingsContext
-  hooks/        useFetch, useAvailability, useDebounce
-  utils/        dateUtils, validation, storage
-  App.jsx       Provider ağacı + routing
-  App.css       Projenin tüm stilleri (tek dosya)
-```
+├── App.jsx                     # Route tanımları ve provider ağacı
+├── App.css                     # Tüm tasarım tokenları ve global stiller
+├── context/
+│   ├── SettingsContext.jsx     # İşletme adı, telefon, çalışma saatleri, kapalı gün
+│   ├── AuthContext.jsx         # Sahte JWT tabanlı admin oturumu
+│   ├── ServiceContext.jsx      # Hizmet CRUD + aktif/pasif yönetimi
+│   ├── BlockedCustomerContext.jsx
+│   ├── AppointmentContext.jsx  # Randevu CRUD, slot doluluk kontrolü
+│   ├── ClosedDayContext.jsx    # Admin tarafından eklenen özel kapalı günler
+│   └── ThemeContext.jsx        # Açık/koyu tema durumu
+├── components/
+│   ├── layout/                 # Header, Footer, ProtectedRoute
+│   ├── pages/                  # Home, Services, BookAppointment, MyAppointments,
+│   │                           # Login, AdminPanel, NotFound
+│   ├── admin/                  # BusinessHoursSettings, ClosedDaysManager,
+│   │                           # AppointmentFilters, PasswordSettings
+│   ├── services/                # ServiceCard, ServiceForm, ServiceManagerList
+│   ├── ui/                      # Button, Input, Select, Modal, Card, Badge, Calendar, Spinner
+│   ├── visuals/                 # Logo, BarberStripe (marka imza öğesi)
+│   └── hooks/                   # useAvailability, useDebounce, useFetch
+└── utils/
+    ├── dateUtils.js             # Slot üretimi, tarih formatlama, çalışma günü kontrolü
+    ├── scheduling.js            # Tek noktadan tarih kapalılık kontrolü (UI + veri katmanı ortak)
+    ├── storage.js                # localStorage get/set sarmalayıcı + STORAGE_KEYS
+    └── validation.js             # Ad-soyad / telefon doğrulama ve normalize etme
 
-## Bilinen sınırlamalar
+Mimari Not: utils/scheduling.js içindeki getDateClosureInfo fonksiyonu, hem Calendar bileşeninin hem useAvailability hook'unun hem de AppointmentContext'in aynı kapalı gün mantığını kullanmasını sağlar. Bu, arayüz ile veri katmanının kapanış kurallarında birbirinden sapmasını önler.
 
-- Backend yok; veriler yalnızca tarayıcıda saklanır (tarayıcı verisi temizlenirse randevular
-  silinir).
-- Admin kimlik doğrulaması demo amaçlıdır, prodüksiyonda kullanılmamalıdır.
-- SMS/e-posta bildirimi gönderilmez, sadece uygulama içi toast bildirimleri vardır.
+
+🚀 Kurulum
+
+bash# Bağımlılıkları yükleyin
+npm install
+
+# Geliştirme sunucusunu başlatın
+npm run dev
+
+# Üretim derlemesi
+npm run build
+
+Uygulama varsayılan olarak Vite geliştirme sunucusunda (index.html giriş noktası /src/main.jsx) çalışacak şekilde yapılandırılmıştır.
+
+
+🔑 Admin Girişi
+
+Varsayılan demo kimlik bilgileri (AuthContext.jsx içinde tanımlı):
+
+Kullanıcı AdıŞifreadminyakamoz2026
+
+Giriş yaptıktan sonra admin, Ayarlar sekmesinden şifresini değiştirebilir (PasswordSettings). Oturum, 8 saat geçerlilik süreli bir token ile localStorage'da tutulur.
+
+
+💾 Veri Katmanı ve Kalıcılık
+
+Tüm veriler src/utils/storage.js üzerinden localStorage'a yazılır. Kullanılan anahtarlar:
+
+Anahtarİçerikyakamoz_appointmentsRandevu kayıtlarıyakamoz_servicesHizmet listesiyakamoz_blocked_customersEngellenen müşterileryakamoz_auth_tokenAdmin oturum token'ıyakamoz_admin_credentialsAdmin kullanıcı adı/şifresiyakamoz_settingsİşletme ayarları (isim, telefon, çalışma saatleri, kapalı gün)yakamoz_closed_daysÖzel kapalı günleryakamoz_themeSeçili temayakamoz_admin_filtersAdmin panelindeki son kullanılan randevu filtreleri
+
+
+Backend olmadığı için useFetch hook'u şu an aktif kullanılmıyor; ileride gerçek bir API'ye (/api/appointments vb.) geçiş yapılmak istenirse hazır bir soyutlama olarak bırakılmıştır.
+
+
+
+
+📏 Randevu İş Kuralları
+
+
+Çalışma saatleri: 09:00 – 19:00, 30 dakikalık dilimlerle (SLOT_INTERVAL_MINUTES)
+Bir zaman dilimine en fazla 2 randevu alınabilir (MAX_APPOINTMENTS_PER_SLOT)
+Varsayılan haftalık kapalı gün: Salı (admin panelinden değiştirilebilir)
+Admin, takvimden bağımsız olarak istediği özel günleri de kapalı ilan edebilir (resmî tatil, bakım vb.)
+Geçmiş tarih/saatler otomatik olarak seçilemez hale gelir
+Aynı ad-soyad + telefon kombinasyonu engellenmişse yeni randevu oluşturulamaz
+Randevu ertelendiğinde de aynı doluluk ve kapalı gün kontrolleri tekrar uygulanır
+
+
+
+🎨 Tema Sistemi
+
+
+İlk yüklemede index.html içindeki inline script, flash of wrong theme önlemek için tema kararını DOM boyanmadan önce verir
+Kullanıcı tercihi yoksa prefers-color-scheme sistem ayarına bakılır
+Seçim ThemeContext üzerinden data-theme attribute'u ile CSS custom property'lerine yansıtılır
+
+
+
+⚠️ Bilinen Sınırlamalar
+
+
+Gerçek bir backend/API yoktur; veriler yalnızca kullanıcının tarayıcısında saklanır ve cihazlar arasında senkronize olmaz
+Kimlik doğrulama demo amaçlıdır, üretim güvenliği sağlamaz (alg: none sahte JWT)
+Randevu bildirimleri (SMS/e-posta) gönderilmez, sadece uygulama içi toast bildirimleri vardır
+
+
+🗺️ Yol Haritası Fikirleri
+
+
+ Gerçek bir backend/API entegrasyonu (useFetch hook'u bu geçişe hazır)
+ SMS/e-posta ile randevu hatırlatma
+ Çoklu berber/çalışan desteği
+ Randevu istatistikleri ve raporlama paneli
