@@ -2,13 +2,9 @@
 
 Yakamoz Erkek Kuaförü için geliştirilmiş, backend gerektirmeyen, tamamen istemci tarafında (client-side) çalışan bir randevu yönetim uygulamasıdır. Müşteriler online randevu alabilir, randevularını telefon numaralarıyla sorgulayabilir; işletme sahibi ise admin panelinden randevuları onaylayıp yönetebilir.
 
-
 🎯 Portfolyo / demo projesi — Veriler bir sunucuya değil, tarayıcının localStorage'ına kaydedilir.
 
-
-
-
-📑 İçindekiler
+## 📑 İçindekiler
 
 
 Özellikler
@@ -25,9 +21,9 @@ Yol Haritası
 
 
 
-✨ Özellikler
+### ✨ Özellikler
 
-Müşteri Tarafı
+### Müşteri Tarafı
 
 
 🏠 Ana Sayfa — İşletme tanıtımı, öne çıkan hizmetler, hızlı randevu çağrısı
@@ -37,7 +33,7 @@ Müşteri Tarafı
 🌗 Açık/Koyu Tema — Sistem tercihine duyarlı, manuel değiştirilebilir tema anahtarı
 
 
-Admin (Berber Paneli) Tarafı
+### Admin (Berber Paneli) Tarafı
 
 
 🔐 Kullanıcı adı/şifre ile korumalı giriş (ProtectedRoute)
@@ -49,9 +45,9 @@ Admin (Berber Paneli) Tarafı
 
 
 
-🧭 Ekran Akışı
+### 🧭 Ekran Akışı
 
-Ana Sayfa ──┬── Hizmetler ──► Randevu Al ──► Onay Ekranı
+Ana Sayfa ──┬── Hizmetler ──► Randevu Al ──► Onay Ekranı <br>
             ├── Randevu Al (doğrudan)
             ├── Randevularım (telefonla sorgu)
             └── Admin Girişi ──► Berber Paneli
