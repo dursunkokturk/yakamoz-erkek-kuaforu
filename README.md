@@ -1,4 +1,4 @@
-💈 Yakamoz Erkek Kuaförü — Online Randevu Sistemi
+# 💈 Yakamoz Erkek Kuaförü — Online Randevu Sistemi
 
 Yakamoz Erkek Kuaförü için geliştirilmiş, backend gerektirmeyen, tamamen istemci tarafında (client-side) çalışan bir randevu yönetim uygulamasıdır. Müşteriler online randevu alabilir, randevularını telefon numaralarıyla sorgulayabilir; işletme sahibi ise admin panelinden randevuları onaylayıp yönetebilir.
 
