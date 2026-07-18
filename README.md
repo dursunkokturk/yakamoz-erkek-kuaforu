@@ -126,7 +126,7 @@ Uygulama varsayılan olarak Vite geliştirme sunucusunda (index.html giriş nokt
 Varsayılan demo kimlik bilgileri (AuthContext.jsx içinde tanımlı):
 
 | Kullanıcı Adı | Şifre       |
-|---------------|-------------|
+|:--------------|:------------|
 | admin         | yakamoz2026 |
 
 
@@ -138,7 +138,7 @@ Giriş yaptıktan sonra admin, Ayarlar sekmesinden şifresini değiştirebilir (
 Tüm veriler src/utils/storage.js üzerinden localStorage'a yazılır. Kullanılan anahtarlar:
 
 | Anahtar                   | İçerik                                                         |
-|---------------------------|----------------------------------------------------------------|
+|:--------------------------|:---------------------------------------------------------------|
 | yakamoz_appointments      | Randevu kayıtları                                              |
 | yakamoz_services          | Hizmet listesi                                                 |
 | yakamoz_blocked_customers | Engellenen müşteriler                                          |
