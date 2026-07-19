@@ -24,21 +24,21 @@ Yakamoz Erkek Kuaförü için geliştirilmiş, backend gerektirmeyen, tamamen is
 
 ### Müşteri Tarafı
 
-🏠 Ana Sayfa — İşletme tanıtımı, öne çıkan hizmetler, hızlı randevu çağrısı
-✂️ Hizmetler — Aktif hizmetlerin listesi (isim, süre, ücret), hizmete tıklayarak doğrudan randevu formuna geçiş
-📅 Randevu Al — Ad-soyad, telefon, hizmet seçimi, takvimden tarih seçimi ve o günün uygun saatlerini gösteren dinamik saat seçimi
-🔍 Randevularım — Telefon numarasıyla geçmiş/gelecek randevu sorgulama
-🌗 Açık/Koyu Tema — Sistem tercihine duyarlı, manuel değiştirilebilir tema anahtarı
+🏠 Ana Sayfa — İşletme tanıtımı, öne çıkan hizmetler, hızlı randevu çağrısı <br>
+✂️ Hizmetler — Aktif hizmetlerin listesi (isim, süre, ücret), hizmete tıklayarak doğrudan randevu formuna geçiş <br>
+📅 Randevu Al — Ad-soyad, telefon, hizmet seçimi, takvimden tarih seçimi ve o günün uygun saatlerini gösteren dinamik saat seçimi <br>
+🔍 Randevularım — Telefon numarasıyla geçmiş/gelecek randevu sorgulama <br>
+🌗 Açık/Koyu Tema — Sistem tercihine duyarlı, manuel değiştirilebilir tema anahtarı <br>
 
 
 ### Admin (Berber Paneli) Tarafı
 
-🔐 Kullanıcı adı/şifre ile korumalı giriş (ProtectedRoute)
-📋 Randevu Yönetimi — Güne göre randevu listeleme, durum/hizmet/isim filtreleme, randevu detayında onayla / iptal et / sil / tarih değiştir / müşteriyi engelle işlemleri
-🚫 Engellenen Müşteriler — Kötüye kullanan müşterileri isim+telefon eşleşmesiyle engelleme/engel kaldırma
-🛠️ Hizmet Yönetimi — Hizmet ekleme, düzenleme, silme, aktif/pasif yapma
-📆 Kapalı Günler — Resmî tatil, bakım vb. sebeplerle özel gün kapatma
-⚙️ Ayarlar — Haftalık kapalı gün seçimi, admin şifre değiştirme
+🔐 Kullanıcı adı/şifre ile korumalı giriş (ProtectedRoute) <br>
+📋 Randevu Yönetimi — Güne göre randevu listeleme, durum/hizmet/isim filtreleme, randevu detayında onayla / iptal et / sil / tarih değiştir / müşteriyi engelle işlemleri <br>
+🚫 Engellenen Müşteriler — Kötüye kullanan müşterileri isim+telefon eşleşmesiyle engelleme/engel kaldırma <br>
+🛠️ Hizmet Yönetimi — Hizmet ekleme, düzenleme, silme, aktif/pasif yapma <br>
+📆 Kapalı Günler — Resmî tatil, bakım vb. sebeplerle özel gün kapatma <br>
+⚙️ Ayarlar — Haftalık kapalı gün seçimi, admin şifre değiştirme <br>
 
 
 ### 🧭 Ekran Akışı
@@ -207,21 +207,21 @@ An appointment management application built for Yakamoz Men's Barbershop that re
 
 ### Customer Side
 
-- 🏠 Home — Business intro, featured services, quick booking call-to-action
-- ✂️ Services — List of active services (name, duration, price); tapping a service jumps straight into the booking form
-- 📅 Book Appointment — Full name, phone, service selection, date picker, and a dynamic time-slot picker showing that day's available times
-- 🔍 My Appointments — Look up past/upcoming appointments by phone number
-- 🌗 Light/Dark Theme — Respects system preference and can be toggled manually
+- 🏠 Home — Business intro, featured services, quick booking call-to-action <br>
+- ✂️ Services — List of active services (name, duration, price); tapping a service jumps straight into the booking form <br>
+- 📅 Book Appointment — Full name, phone, service selection, date picker, and a dynamic time-slot picker showing that day's available times <br>
+- 🔍 My Appointments — Look up past/upcoming appointments by phone number <br>
+- 🌗 Light/Dark Theme — Respects system preference and can be toggled manually <br>
 
 
 ### Admin (Barber Panel) Side
 
-- 🔐 Username/password-protected login (ProtectedRoute)
-- 📋 Appointment Management — List appointments by day, filter by status/service/name, and from the appointment detail view approve / cancel / delete / reschedule / block customer
-- 🚫 Blocked Customers — Block/unblock abusive customers using a name + phone match
-- 🛠️ Service Management — Add, edit, delete, and activate/deactivate services
-- 📆 Closed Days — Close specific dates for reasons like public holidays or maintenance
-- ⚙️ Settings — Choose the weekly closed day, change the admin password
+- 🔐 Username/password-protected login (ProtectedRoute) <br>
+- 📋 Appointment Management — List appointments by day, filter by status/service/name, and from the appointment detail view approve / cancel / delete / reschedule / block customer <br>
+- 🚫 Blocked Customers — Block/unblock abusive customers using a name + phone match <br>
+- 🛠️ Service Management — Add, edit, delete, and activate/deactivate services <br>
+- 📆 Closed Days — Close specific dates for reasons like public holidays or maintenance <br>
+- ⚙️ Settings — Choose the weekly closed day, change the admin password <br>
 
 
 ### 🧭 Screen Flow
